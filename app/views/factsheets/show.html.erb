@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @factsheet.name %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @factsheet.item_id %>
+</p>
+
+<p>
+  <strong>Figure1:</strong>
+  <%= @factsheet.figure1 %>
+</p>
+
+<p>
+  <strong>Figure2:</strong>
+  <%= @factsheet.figure2 %>
+</p>
+
+<p>
+  <strong>Figure3:</strong>
+  <%= @factsheet.figure3 %>
+</p>
+
+<p>
+  <strong>Figure4:</strong>
+  <%= @factsheet.figure4 %>
+</p>
+
+<%= link_to 'Edit', edit_factsheet_path(@factsheet) %> |
+<%= link_to 'Back', factsheets_path %>

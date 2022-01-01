@@ -1,0 +1,69 @@
+<%= form_for(@sale) do |f| %>
+  <% if @sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+      <% @sale.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- row 1 -->
+<div class="row">
+  <div class="col-xs-12">    
+    <label class="control-label col-xs-2"><%= f.label :name %></label>
+    <%= f.text_field :name %>
+  </div>
+</div>
+  <!-- row 2 -->
+<div class="row">
+  <div class="col-xs-6">    
+    <label class="control-label col-xs-4"><%= f.label :fm_date %></label>
+    <%= f.date_select :fm_date %>
+  </div>
+  <div class="col-xs-6">
+    <label class="control-label col-xs-4"><%= f.label :to_date %></label>
+    <%= f.date_select :to_date %>
+  </div>       
+</div>
+  <!-- row 3 -->
+<div class="row">
+  <div class="col-xs-6">    
+    <label class="control-label col-xs-4"><%= f.label :fm_price %></label>
+    <%= f.text_field :fm_price %>
+  </div>
+  <div class="col-xs-6">
+    <label class="control-label col-xs-4"><%= f.label :to_price %></label>
+    <%= f.text_field :to_price %>
+  </div>       
+</div>
+  <!-- row 4 -->
+<div class="row">
+  <div class="col-xs-12">    
+    <label class="control-label col-xs-2"><%= f.label :qty %></label>
+    <%= f.number_field :qty %>
+  </div>
+</div>
+   
+  <!-- row 5 -->
+<div class="row">
+  <div class="col-xs-6">    
+    <label class="control-label col-xs-4"><%= f.label :max_price %></label>
+    <%= f.text_field :max_price %>
+  </div>
+  <div class="col-xs-6">
+    <label class="control-label col-xs-4"><%= f.label :min_price %></label>
+    <%= f.text_field :min_price %>
+  </div>       
+</div>   
+  <!-- row 6 -->
+<div class="row">
+  <div class="col-xs-12">    
+    <label class="control-label col-xs-2"></label>
+    <%= f.submit %>
+  </div>
+</div>
+
+<% end %>

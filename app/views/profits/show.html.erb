@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @profit.name %>
+</p>
+
+<p>
+  <strong>Quarter:</strong>
+  <%= @profit.quarter %>
+</p>
+
+<p>
+  <strong>Latest profit:</strong>
+  <%= @profit.latest_profit %>
+</p>
+
+<p>
+  <strong>Previous profit:</strong>
+  <%= @profit.previous_profit %>
+</p>
+
+<p>
+  <strong>Inc profit:</strong>
+  <%= @profit.inc_profit %>
+</p>
+
+<p>
+  <strong>Inc percent:</strong>
+  <%= @profit.inc_percent %>
+</p>
+
+<%= link_to 'Edit', edit_profit_path(@profit) %> |
+<%= link_to 'Back', profits_path %>

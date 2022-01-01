@@ -1,0 +1,47 @@
+<%= form_for(profit) do |f| %>
+  <% if profit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profit.errors.count, "error") %> prohibited this profit from being saved:</h2>
+
+      <ul>
+      <% profit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quarter %>
+    <%= f.text_field :quarter %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latest_profit %>
+    <%= f.number_field :latest_profit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :previous_profit %>
+    <%= f.number_field :previous_profit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :inc_profit %>
+    <%= f.number_field :inc_profit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :inc_percent %>
+    <%= f.text_field :inc_percent %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

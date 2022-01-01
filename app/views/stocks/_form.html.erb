@@ -1,0 +1,118 @@
+<%= form_for(@stock) do |f| %>
+  <% if @stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
+
+      <ul>
+      <% @stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- row 1 -->
+  <div class="row">
+    <div class="col-xs-6">    
+      <label class="control-label col-xs-4"><%= f.label 'Name' %></label>
+      <%= f.text_field :name %>
+    </div>
+    <div class="col-xs-6">    
+      <label class="control-label col-xs-4"><%= f.label 'Reason' %></label>
+      <%= f.text_field :reason %>
+    </div>
+  </div>
+  <!-- row 2 -->
+  <div class="row">
+    <div class="col-xs-6">    
+      <label class="control-label col-xs-4"><%= f.label :buy_spread %></label>
+      <%= f.text_field :buy_spread %>
+    </div>
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :sell_spread %></label>
+      <%= f.text_field :sell_spread %>
+    </div>
+  </div>
+  <!-- row 3 -->
+  <div class="row">
+    <div class="col-xs-6">    
+      <label class="control-label col-xs-4"><%= f.label :max_price %></label>
+      <%= f.text_field :max_price %>
+    </div>
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :min_price %></label>
+      <%= f.text_field :min_price %>
+    </div>    
+  </div>
+  <!-- row 4 -->
+  <div class="row">
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :status %></label>
+      <%=f.select :status, Stock::STATUS, {} %>
+    </div>
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :qty %></label>
+      <%= f.text_field :qty %>
+    </div>
+  </div>
+  <!-- row 5 -->
+  <div class="row">
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :buy_target %></label>
+      <%= f.text_field :buy_target %>
+    </div>
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :sell_target %></label>
+      <%= f.text_field :sell_target %>
+    </div>
+  </div>
+  <!-- row 6 -->
+  <div class="row">
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :Buy_Low %></label>
+      <%= f.text_field :bl %>
+    </div>
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :Sell_High %></label>
+      <%= f.text_field :sh %>
+    </div>
+  </div>
+  <!-- row 7 -->
+  <div class="row">
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :volume %></label>
+      <%= f.text_field :volume %>
+    </div>
+    <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :beta %></label>
+      <%= f.text_field :beta %>
+    </div>
+ 
+  </div>
+  <!-- row 8 -->
+  <div class="row">
+      <div class="col-xs-6">
+      <label class="control-label col-xs-4"><%= f.label :cost %></label>
+      <%= f.text_field :cost %>
+    </div> 
+    <div class="col-xs-6">    
+      <label class="control-label col-xs-4"><%= f.label :available_qty %></label>
+      <%= f.text_field :available_qty %>
+    </div>
+  </div>
+    <!-- row 9 -->
+  <div class="row">
+    <div class="col-xs-6">    
+      <label class="control-label col-xs-4"><%= f.label 'Market' %></label>
+      <%= f.text_field :market %>
+    </div>
+
+  </div>
+
+  <!-- row 9 -->
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

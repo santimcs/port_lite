@@ -1,0 +1,1 @@
+SELECT * FROM sales WHERE name = 'AAV' AND fm_date='2016-03-25'

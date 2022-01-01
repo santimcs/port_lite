@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<div class ="page-header text-left" > 
+  <h1><%= "Short Sell" %></h1>
+</div>
+
+<table  id="short_sell" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>D</th>   
+      <th>Target</th>
+      <th>Qty</th>  
+      <th>Cost</th>  
+  
+      <th>From date</th>
+      <th>To date</th>
+      <th>From price</th>
+      <th>To price</th>
+ 
+      <th>Ttl spd</th>
+      <th>Stock</th>
+      <th>Max</th>
+      <th>Max 52</th>    
+      <th>Cons. Price</th>   
+      <th>%</th>      
+      <th>M</th>        
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.each do |sale| %>
+      <% stock = Stock.find_by_name(sale.name) %>
+      <%# if (stock.status == 'S' && stock.sell_target != stock.cost) %>
+      <%# if (stock.status == 'S' && stock.available_qty > 0 && sale.to_price >= sale.fm_price) %> 
+      <% if stock.status == 'S' && stock.available_qty > 0 %>         
+
+        <% if (stock.sell_target > 0) %>
+          <% target = stock.sell_target %>
+          <% method = 'T' %>           
+        <% else %>        
+          <% target = goal(sale.fm_price,stock.sell_spread) %>
+          <% method = 'S' %>
+          <% if (target < sale.max_price) %>
+            <% target = sale.max_price %>
+            <% method = 'M' %>          
+          <% end %>    
+        <% end %> 
+        <% spreads = num_of_spread(sale.to_price,target).to_i %>
+        <%# if spreads <= 10 %> 
+        <tr>
+          <td><%= sale.name %></td>
+          <td><%= num_of_spread(sale.to_price,target).to_i %></td>
+          <td><%= number_with_precision(target, precision: 2) %></td>
+          <td><%= number_with_delimiter(stock.qty, delimiter: ",") %></td>
+          <td><%= number_with_precision(stock.cost, precision: 2) %></td>        
+  
+          <td><%= sale.fm_date.strftime("%b %d") %></td>
+          <td><%= sale.to_date.strftime("%b %d") %></td>
+          <td><%= number_with_precision(sale.fm_price, precision: 2) %></td>
+          <td><%= number_with_precision(sale.to_price, precision: 2) %></td>
+          <td><%= sale.ttl_spread %></td>
+          <td><%= stock.sell_spread %></td>
+          <td><%= number_with_precision(sale.max_price, precision: 2) %></td>
+          <td><%= number_with_precision(stock.max_price, precision: 2) %></td>  
+        <% if stock.consensu %>
+          <td><%= number_with_precision(stock.consensu.consensus_price, precision: 2) %></td>  
+          <td><%= number_with_precision((stock.consensu.consensus_price-target)/target*100, precision: 0) %></td> 
+        <% else %>
+          <td><%= 0.00 %></td>  
+          <td><%= 0 %></td>            
+        <% end %>          
+          <td><%= method %></td>                
+        </tr>
+        <%# end %>  <!-- END OF SPREAD -->
+      <% end %>  
+    <% end %>
+  </tbody>
+</table>

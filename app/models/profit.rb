@@ -1,0 +1,3 @@
+class Profit < ApplicationRecord
+
+end

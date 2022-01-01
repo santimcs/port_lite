@@ -1,0 +1,94 @@
+<% if notice %>
+  <div class="alert alert-info">
+    <p id="notice">
+      <%= notice %>
+    </div>
+  </div>
+<% end %>
+<br/>
+<div class ="page-header text-center" > 
+  <%= link_to 'Back', sales_path,
+  :class => "btn btn-success pull-right"  %>
+  <h1><%= "New Sales" %></h1>
+</div>
+<!-- row 1 -->
+<div class="row">
+  <div class="col-xs-12">    
+    <label class="control-label col-xs-6">Name:</label>
+    <%= @sale.name %>
+  </div>
+</div>
+<!-- row 2 -->
+<div class="row">
+  <div class="col-xs-4">    
+    <label class="control-label col-xs-6">Fm date:</label>
+    <%= @sale.fm_date %>
+  </div>
+  <div class="col-xs-4">
+    <label class="control-label col-xs-6">To date:</label>
+    <%= @sale.to_date %>
+  </div>
+  <div class="col-xs-4">
+      <label class="control-label col-xs-8">Days:</label>
+      <%= @sale.days %>
+  </div>        
+</div>
+<!-- row 3 -->
+<div class="row">
+  <div class="col-xs-4">    
+    <label class="control-label col-xs-6">Fm price:</label>
+  <%= @sale.fm_price %>
+  </div>
+  <div class="col-xs-4">
+    <label class="control-label col-xs-6">To price:</label>
+  <%= @sale.to_price %>
+  </div>
+  <div class="col-xs-4">
+      <label class="control-label col-xs-8">Diff:</label>
+  <%= @sale.diff %>
+  </div>        
+</div>
+<!-- row 4 -->
+<div class="row">
+  <div class="col-xs-4">    
+    <label class="control-label col-xs-6">Pct:</label>
+  <%= @sale.pct %>
+  </div>
+  <div class="col-xs-4">
+    <label class="control-label col-xs-6">Ttl spread:</label>
+  <%= @sale.ttl_spread %>
+  </div>
+  <div class="col-xs-4">
+      <label class="control-label col-xs-8">Avg spread:</label>
+  <%= @sale.avg_spread %>
+  </div>        
+</div>
+<!-- row 5 -->
+<div class="row">
+  <div class="col-xs-4">    
+    <label class="control-label col-xs-6">Qty:</label>
+  <%= @sale.qty %>
+  </div>
+  <div class="col-xs-4">
+    <label class="control-label col-xs-6">Max price:</label>
+  <%= @sale.max_price %>
+  </div>
+  <div class="col-xs-4">
+      <label class="control-label col-xs-8">Min price:</label>
+  <%= @sale.min_price %>
+  </div>        
+</div>
+<!-- row 6 -->
+<div class="row">
+  <div class="col-xs-6">    
+    <label class="control-label col-xs-6"></label>
+  <%= link_to 'Edit', edit_sale_path(@sale), 
+        :class => " btn btn-warning btn-xs active" %>
+  </div>
+  <div class="col-xs-6">
+    <label class="control-label col-xs-6"></label>
+  <%= link_to 'Back', sales_path, 
+        :class => " btn btn-info btn-xs active" %>
+  </div>
+       
+</div>

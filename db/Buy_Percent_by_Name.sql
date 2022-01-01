@@ -1,0 +1,3 @@
+SELECT * FROM sales 
+WHERE name = 'VIBHA'
+ORDER BY pct ASC LIMIT 10

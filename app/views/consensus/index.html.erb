@@ -1,0 +1,61 @@
+<% content_for :title, 'Consensus' %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Consensus</h1>
+
+<table id="consensus" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Cons. price</th>
+      <th>Pct</th>            
+      <th>Buy</th>
+      <th>Hold</th>
+      <th>Sell</th>
+      <th>Ttl</th>
+      <th>Eps -A-</th>
+      <th>Eps -B-</th>
+      <th>Pe</th>
+      <th>Pbv</th>
+      <th>Yield</th>
+
+      <th>Status</th>
+ 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consensus.each do |consensu| %>
+
+      <tr>
+        <td><%= consensu.name %></td>
+        <td><%= number_with_precision(consensu.price,
+        precision: 2) %></td>
+        <td><%= number_with_precision(consensu.consensus_price,
+        precision: 2) %></td>
+        <td><%= number_with_precision(
+        (consensu.consensus_price-consensu.price)/consensu.price*100, 
+        precision: 2) %></td>                
+        <td><%= consensu.buy %></td>
+        <td><%= consensu.hold %></td>
+        <td><%= consensu.sell %></td>
+        <td><%= (consensu.buy*2) + consensu.hold - (consensu.sell*2) %></td>        
+        <td><%= consensu.eps_a %></td>
+        <td><%= consensu.eps_b %></td>
+        <td><%= consensu.pe %></td>
+        <td><%= consensu.pbv %></td>
+        <td><%= consensu.yield %></td>
+
+        <%# <td><%= status_desc(consensu.status)</td> %>
+        <td><%= consensu.status %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Consensu', new_consensu_path %>

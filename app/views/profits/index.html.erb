@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Profits</h1>
+
+<table id="profits" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>      
+      <th>Quarter</th>
+      <th>Latest profit</th>
+      <th>Previous profit</th>
+      <th>Inc profit</th>
+      <th>Inc %</th>
+      <th>Price</th>
+      <th>Target</th>
+      <th>Pct</th> 
+      <th>Status</th>  
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profits.each do |profit| %>
+      <tr>
+        <td><%= profit.name %></td>
+        <td><%= profit.year %></td>
+        <td><%= profit.quarter %></td>
+        <td><%= number_with_precision(profit.latest_profit, precision: 0,delimiter: ',') %></td>
+        <td><%= number_with_precision(profit.previous_profit, precision: 0,delimiter: ',') %></td>
+        <td><%= number_with_precision(profit.inc_profit, precision: 0,delimiter: ',') %></td>
+        <td><%= number_with_precision(profit.inc_percent, precision: 2,delimiter: ',') %></td>
+        <% consensu = Consensu.find_by_name(profit.name) %>
+        <% if consensu %>
+          <% status = consensu.status %>
+          <% cons_pct = (consensu.consensus_price-consensu.price)/consensu.price*100 %>
+          <td><%= number_with_precision(consensu.price,
+              precision: 2) %></td>
+          <td><%= number_with_precision(consensu.consensus_price,
+              precision: 2) %></td>
+          <td><%= number_with_precision(cons_pct, precision: 2) %></td> 
+        <% else %>
+          <% cons_pct = 0 %>
+          <% status = 'Z' %>        
+          <td><%= 0.00 %></td>
+          <td><%= 0.00 %></td>
+          <td><%= 0.00 %></td>
+        <% end %> 
+        <%# avg_pct =  (profit.inc_percent + cons_pct)/2 %>
+        <td><%= status_desc(status) %></td> 
+        <td><%= link_to_icon 'Destroy', profit, method: :delete, data: { confirm: 'Are you sure?' } %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profit', new_profit_path %>

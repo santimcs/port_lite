@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Factsheets</h1>
+
+<table id="factsheets" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Item</th>
+      <th>Description</th>
+      <th>Growth</th>
+      <th>Figure1</th>
+      <th>Figure2</th>
+      <th>Figure3</th>
+      <th>Figure4</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @factsheets.each do |factsheet| %>
+      <tr>
+        <td><%= factsheet.name %></td>
+        <td><%= factsheet.item_id %></td>
+        <td><%= factsheet.item.desc_en %></td>
+        <td><%= number_with_precision(growth(factsheet.figure1, factsheet.figure2), precision: 2, delimiter: ",") %></td>
+        <td><%= number_with_precision(factsheet.figure1, precision: 2, delimiter: ",") %></td>
+        <td><%= number_with_precision(factsheet.figure2, precision: 2, delimiter: ",") %></td>
+        <td><%= number_with_precision(factsheet.figure3, precision: 2, delimiter: ",") %></td>
+        <td><%= number_with_precision(factsheet.figure4, precision: 2, delimiter: ",") %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Factsheet', new_factsheet_path %>

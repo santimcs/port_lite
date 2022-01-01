@@ -1,0 +1,46 @@
+<% content_for :title, 'Sales' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class ="page-header text-center" > 
+<%= link_to 'Export Data', sales_export_path(format: "csv"),
+  :class => "btn btn-success pull-left"  %>
+  <h1><%= "Sales" %></h1>
+</div>
+
+<table id="sales" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>From date</th>
+      <th>To date</th>
+      <th>From price</th>
+      <th>To price</th>
+      <th>Ttl spd</th>
+      <th>Days</th>
+      <th>Qty</th>
+      <th>Max</th>
+      <th>Min</th>      
+    
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.each do |sale| %>
+      <tr>
+        <td><%= sale.name %></td>
+        <td><%= sale.fm_date %></td>
+        <td><%= sale.to_date %></td>
+        <td><%= number_with_precision(sale.fm_price, precision: 2) %></td>
+        <td><%= number_with_precision(sale.to_price, precision: 2) %></td>
+
+        <td><%= sale.ttl_spread %></td>
+        <td><%= sale.days %></td>        
+        <td><%= number_with_precision(sale.qty, precision: 0,delimiter: ',') %></td>
+        <td><%= number_with_precision(sale.max_price, precision: 2) %></td>
+        <td><%= number_with_precision(sale.min_price, precision: 2) %></td>    
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>

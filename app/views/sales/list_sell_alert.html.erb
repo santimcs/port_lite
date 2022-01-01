@@ -1,0 +1,99 @@
+<% content_for :title, 'Sell Alert' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class ="page-header text-left" > 
+  <h1><%= "Sell Alert" %></h1>
+</div>
+
+<table  id="sell_alert" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>D</th> 
+      <th>Target</th>
+      <th>Qty</th>
+      <th>Available</th>
+      <th>Cost</th>            
+     
+      <th>From date</th>
+      <th>To date</th>
+      <th>Reason</th>      
+      <th>From price</th>
+      <th>To price</th>
+      <th>Ttl spd</th>
+      <%# <th>Stk spd</th>  %>
+      <th>Max prd</th>
+      <th>Max 52W</th> 
+      <th>Cons. Price</th>   
+      <%# <th>%</th>         %>
+      <th>Sts</th>        
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.each do |sale| %>
+    <% method = '' %>
+    <% stock = Stock.find_by_name(sale.name) %>
+    <% if (stock.status == 'S' || stock.status == 'I') %>
+
+        <% if (stock.cost == 0) %>
+          <% stock.cost = sale.fm_price %>
+        <% end %>
+
+        <% if (stock.sell_target == 0) %>
+          <% target = goal(stock.cost,stock.sell_spread) %>
+          <% method = 'S' %>
+        <% else %>
+          <% target = stock.sell_target %>
+          <% method = 'T' %>          
+        <% end %>
+        <%# target price equals to max price of that period %>
+        <% if (method != 'T' && sale.max_price > target) %>
+          <% target = sale.max_price %>
+          <% method = 'M' %>
+        <% end %> 
+        <%# not higher than max price in 52 weeks %>
+        <%# if (target > stock.max_price) %>
+          <%# target = stock.max_price %>
+        <%# end %>
+        <% spreads = num_of_spread(sale.to_price,target).to_i %>
+
+        <%# <% if spreads <= 10 %>  
+        <%# if sale.to_price >= sale.fm_price %> 
+
+        <tr>
+          <td><%= sale.name %></td>
+          <td><%= num_of_spread(sale.to_price,target).to_i %></td>    
+          <td><%= number_with_precision(target, precision: 2) %></td>
+          <td><%= number_with_delimiter(stock.qty, delimiter: ",") %></td>
+          <td><%= number_with_delimiter(stock.available_qty, delimiter: ",") %></td>
+          <td><%= number_with_precision(stock.cost, precision: 2) %></td>        
+  
+          <td><%= sale.fm_date.strftime("%b %d") %></td>
+          <td><%= sale.to_date.strftime("%b %d") %></td>
+          <%# <td><%= sale.days </td> %>
+          <td><%= stock.reason %></td>        
+          <td><%= number_with_precision(sale.fm_price, precision: 2) %></td>
+          <td><%= number_with_precision(sale.to_price, precision: 2) %></td>
+          <td><%= sale.ttl_spread %></td>
+          <%# <td><%= stock.sell_spread %></td> 
+
+          <td><%= number_with_precision(sale.max_price, precision: 2) %></td>
+          <td><%= number_with_precision(stock.max_price, precision: 2) %></td>    
+          <% if stock.consensu %>
+            <td><%= number_with_precision(stock.consensu.consensus_price, precision: 2) %></td>  
+            <%# <td><%= number_with_precision((stock.consensu.consensus_price-target)/target*100, precision: 0) %></td>  
+          <% else %>
+            <td><%= 0.00 %></td>  
+            <%# <td><%= 0 %></td>             
+          <% end %>
+            <%# <td><%= method %></td>           
+            <td><%= stock.status %></td>          
+      </tr>
+
+      <%# end %> <!-- to price > fm price --> 
+    <% end %>  
+    <% end %>
+  </tbody>
+</table>

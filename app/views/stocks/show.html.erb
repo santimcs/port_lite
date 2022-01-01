@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @stock.name %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @stock.reason %>
+</p>
+
+<p>
+  <strong>Buy spread:</strong>
+  <%= @stock.buy_spread %>
+</p>
+
+<p>
+  <strong>Sell spread:</strong>
+  <%= @stock.sell_spread %>
+</p>
+
+<p>
+  <strong>Max price:</strong>
+  <%= @stock.max_price %>
+</p>
+
+<p>
+  <strong>Min price:</strong>
+  <%= @stock.min_price %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @stock.status %>
+</p>
+<p>
+  <strong>Qty:</strong>
+  <%= @stock.qty %>
+</p>
+<p>
+  <strong>Buy target:</strong>
+  <%= @stock.buy_target %>
+</p>
+
+<p>
+  <strong>Sell target:</strong>
+  <%= @stock.sell_target %>
+</p>
+<p>
+  <strong>Buy low:</strong>
+  <%= @stock.bl %>
+</p>
+
+<p>
+  <strong>Sell High:</strong>
+  <%= @stock.sh %>
+</p>
+
+<p>
+  <strong>Volume:</strong>
+  <%= @stock.volume %>
+</p>
+
+<p>
+  <strong>Beta:</strong>
+  <%= @stock.beta %>
+</p>
+
+<p>
+  <strong>Costt:</strong>
+  <%= @stock.cost %>
+</p>
+
+<p>
+  <strong>Available qty:</strong>
+  <%= @stock.available_qty %>
+</p>
+
+<p>
+  <strong>Cost amount:</strong>
+  <%=  number_with_precision(@stock.available_qty * @stock.cost, precision: 2, delimiter: ",") %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>

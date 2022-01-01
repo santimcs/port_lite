@@ -1,0 +1,77 @@
+<%= form_for(consensu) do |f| %>
+  <% if consensu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(consensu.errors.count, "error") %> prohibited this consensu from being saved:</h2>
+
+      <ul>
+      <% consensu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :buy %>
+    <%= f.number_field :buy %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hold %>
+    <%= f.number_field :hold %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sell %>
+    <%= f.number_field :sell %>
+  </div>
+
+  <div class="field">
+    <%= f.label :eps_a %>
+    <%= f.text_field :eps_a %>
+  </div>
+
+  <div class="field">
+    <%= f.label :eps_b %>
+    <%= f.text_field :eps_b %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pe %>
+    <%= f.text_field :pe %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pbv %>
+    <%= f.text_field :pbv %>
+  </div>
+
+  <div class="field">
+    <%= f.label :yield %>
+    <%= f.text_field :yield %>
+  </div>
+
+  <div class="field">
+    <%= f.label :target_price %>
+    <%= f.text_field :target_price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

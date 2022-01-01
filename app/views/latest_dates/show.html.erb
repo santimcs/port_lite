@@ -1,0 +1,11 @@
+<% content_for :title, 'Dates' %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @latest_date.date %>
+</p>
+
+<%= link_to 'Edit', edit_latest_date_path(@latest_date) %> |
+<%= link_to 'Back', latest_dates_path %>
