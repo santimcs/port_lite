@@ -9,6 +9,11 @@
 </p>
 
 <p>
+  <strong>Market:</strong>
+  <%= @stock.market %>
+</p>
+
+<p>
   <strong>Reason:</strong>
   <%= @stock.reason %>
 </p>
@@ -84,6 +89,7 @@
   <strong>Cost amount:</strong>
   <%=  number_with_precision(@stock.available_qty * @stock.cost, precision: 2, delimiter: ",") %>
 </p>
+
 
 <%= link_to 'Edit', edit_stock_path(@stock) %> |
 <%= link_to 'Back', stocks_path %>

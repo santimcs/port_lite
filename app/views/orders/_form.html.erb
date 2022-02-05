@@ -36,6 +36,16 @@
     <%= form.number_field :active, id: :order_active %>
   </div>
 
+  <div class="field">
+    <%= form.label :reason %>
+    <%= form.text_field :reason, id: :order_reason %>
+  </div>
+
+  <div class="field">
+    <%= form.label :market %>
+    <%= form.text_field :market, id: :order_market %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
