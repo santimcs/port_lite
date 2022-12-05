@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211129153004) do
+ActiveRecord::Schema.define(version: 20220305061939) do
 
 # Could not dump table "D2016-03-17" because of following StandardError
 #   Unknown type '' for column 'id'
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20211129153004) do
     t.integer "active"
     t.string "reason"
     t.string "market"
+    t.date "xdate", default: "2022-02-02"
   end
 
   create_table "profits", force: :cascade do |t|

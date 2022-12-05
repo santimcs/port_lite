@@ -17,7 +17,7 @@
       <th>Active</th>
       <th>Reason</th> 
       <th>Market</th>
-
+      <th>Xdate</th>
       <th></th>
       <th></th>  
     </tr>
@@ -36,6 +36,7 @@
         <td><%= order.active %></td>
         <td><%= order.reason %></td>
         <td><%= order.market %></td>
+        <td><%= order.xdate %></td>
         <td><%= link_to_icon 'Show', order %></td>
         <td><%= link_to_icon 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

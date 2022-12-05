@@ -46,6 +46,12 @@
     <%= form.text_field :market, id: :order_market %>
   </div>
 
+  <div class="field">
+    <%= form.label :xdate %>
+    <%= form.date_select :xdate, :start_year => 2022, :end_year => 2023, order: [:year, :month, :day]  %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

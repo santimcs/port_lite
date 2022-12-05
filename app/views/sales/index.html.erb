@@ -21,12 +21,14 @@
       <th>Qty</th>
       <th>Max</th>
       <th>Min</th>      
+      <th>Pct</th>      
     
     </tr>
   </thead>
 
   <tbody>
     <% @sales.each do |sale| %>
+
       <tr>
         <td><%= sale.name %></td>
         <td><%= sale.fm_date %></td>
@@ -39,6 +41,7 @@
         <td><%= number_with_precision(sale.qty, precision: 0,delimiter: ',') %></td>
         <td><%= number_with_precision(sale.max_price, precision: 2) %></td>
         <td><%= number_with_precision(sale.min_price, precision: 2) %></td>    
+        <td><%= number_with_precision((sale.to_price-sale.fm_price)/sale.fm_price*100, precision: 2) %></td>    
 
       </tr>
     <% end %>
