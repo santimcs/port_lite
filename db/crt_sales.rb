@@ -2,7 +2,7 @@ require 'csv'
 
 class CrtSales < ActiveRecord::Base
 	records = 0
-  CSV.foreach(Rails.root.join("db/sales.csv"), headers: false) do |row|
+  CSV.foreach(Rails.root.join("db/sales.csv"), col_sep: ',', headers: true) do |row|
 
       Sale.find_or_create_by(name: row[0], fm_date: row[1], to_date: row[2],
       days: row[3], fm_price: row[4], to_price: row[5], 
