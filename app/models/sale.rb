@@ -147,7 +147,11 @@ end
 		self.diff = self.to_price - self.fm_price
 		self.pct = self.diff/self.fm_price*100
 		self.ttl_spread = num_of_spread(self.fm_price,self.to_price)
-		self.avg_spread = (self.ttl_spread / self.days).round
+        if self.days != 0
+		  self.avg_spread = (self.ttl_spread / self.days).round
+        else
+            self.avg_spread = 0
+        end
         if (self.to_price > self.max_price)
             self.max_price = self.to_price
         end
